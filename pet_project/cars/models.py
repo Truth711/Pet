@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from users.models import CustomUser
 
 
 class Brand(models.Model):
@@ -85,7 +85,7 @@ class Car(models.Model):
         help_text='Введите цену в рублях',
     )
     seller = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='cars',
         verbose_name='Продавец',
@@ -117,7 +117,7 @@ class Car(models.Model):
 class Favorites(models.Model):
     """Модель для связи юзера с его списком понравившихся предложений."""
     user = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='favorites',
         verbose_name='Пользователь',
